@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devocional Charmila Elija</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#fdf2f8;color:#4c1d95}
+.hero{
+  min-height:88vh;
+  background: linear-gradient(105deg, rgba(76,29,149,0.92) 0%, rgba(124,58,237,0.70) 40%, rgba(236,72,153,0.60) 100%), url('IMG_9525.jpeg');
+  background-size:cover; background-position:center top;
+  display:flex; align-items:center; padding:26px; color:white; position:relative;
+}
+.hero-content{max-width:680px; z-index:2}
+.badge{font-size:10px; letter-spacing:3px; background:rgba(255,255,255,0.22); padding:6px 12px; border-radius:100px; border:1px solid rgba(255,255,255,0.35)}
+.hero h1{font-family:'Anton',sans-serif; font-size:44px; line-height:0.9; margin:16px 0 8px; text-transform:uppercase}
+.sub{font-size:13px; opacity:0.95; margin-bottom:14px}
+.btn-main{background:#fce7f3; color:#831843; border:none; padding:13px 28px; border-radius:100px; font-weight:800; cursor:pointer; margin-right:8px}
+.btn-music{background:rgba(255,255,255,0.2); color:white; border:1px solid white; padding:11px 16px; border-radius:100px; font-weight:700; cursor:pointer; font-size:12px}
+.cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:12px}
+.cat-grid button{background:rgba(255,255,255,0.14); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.35); color:white; padding:11px; border-radius:12px; font-size:12px; font-weight:700; cursor:pointer; text-align:left}
+.cat-grid button.active{background:white; color:#7c3aed}
+.lembrete-box{margin-top:14px; background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.32); padding:12px; border-radius:14px; backdrop-filter:blur(8px)}
+.lembrete-box input{padding:5px 8px; border-radius:6px; border:none; font-weight:700; color:#5b21b6; margin:0 4px}
+.lembrete-box button{padding:6px 12px; border-radius:100px; border:none; background:white; color:#7c3aed; font-weight:800; cursor:pointer; font-size:11px}
+.container{max-width:780px; margin:0 auto; padding:18px}
+.filtro{margin:16px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.filtro span{background:white; border:1px solid #e9d5ff; padding:6px 14px; border-radius:100px; font-size:11px; font-weight:700; color:#7c3aed}
+.menu{display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin:12px 0}
+.menu button{padding:10px 4px; border-radius:10px; border:1px solid #f5d0fe; background:white; color:#a21caf; font-weight:800; font-size:12px; cursor:pointer}
+.menu button.active{background:linear-gradient(135deg,#7c3aed,#ec4899); color:white}
+.card{background:white; border-radius:20px; padding:24px; box-shadow:0 10px 25px rgba(124,58,237,0.08); border:1px solid #fae8ff}
+.card h2{font-family:'Anton',sans-serif; font-size:19px; color:#5b21b6; text-transform:uppercase}
+.versiculo-small{font-size:11px; color:#be185d; background:#fce7f3; display:inline-block; padding:4px 10px; border-radius:100px; margin:10px 0; font-style:italic; letter-spacing:0.3px}
+.bloco{background:#fdf4ff; padding:14px; border-radius:12px; margin:11px 0; border-left:4px solid #c084fc; font-size:13px; line-height:1.5}
+.bloco.rosa{background:#fff1f2; border-left-color:#f472b6}
+.bloco.roxo{background:#f5f3ff; border-left-color:#a78bfa}
+.label{font-size:10px; font-weight:800; letter-spacing:1.5px; color:#7c3aed; margin-bottom:4px}
+.foto-perfil{width:48px; height:48px; border-radius:100px; border:2px solid white; object-fit:cover; position:absolute; top:18px; right:18px}
+.nav{display:flex; gap:10px; margin-top:16px}
+.nav button{flex:1; background:linear-gradient(135deg,#7c3aed,#ec4899); color:white; border:none; padding:13px; border-radius:100px; font-weight:800; cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- MUSICA -->
+<audio id="musica" loop preload="auto">
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="hero">
+  <img src="IMG_9525.jpeg" class="foto-perfil">
+  <div class="hero-content">
+    <span class="badge">ROXO CLARO & ROSA • CHARMILA ELIJA</span>
+    <h1>30 DIAS DE<br>DECLARAÇÕES<br>PERSONALIZADAS</h1>
+    <p class="sub">Sua foto no fundo, com música de oração e lembrete completo.</p>
+    <div>
+      <button class="btn-main" onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">COMEÇAR AGORA ↓</button>
+      <button class="btn-music" id="btnMusica" onclick="toggleMusica()">🔊 Música: OFF</button>
+    </div>
+
+    <div style="margin-top:14px">
+      <p style="font-size:11px; font-weight:800; letter-spacing:2px; margin-bottom:8px">QUAL SUA NECESSIDADE HOJE?</p>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+
+    <div class="lembrete-box">
+      <div style="font-size:11px; font-weight:800; margin-bottom:6px">⏰ LEMBRETE DIÁRIO COMPLETO</div>
+      <div style="font-size:12px">Me lembrar às <input type="time" id="hora" value="05:00">
+      <button onclick="ativar()">ATIVAR</button>
+      <button onclick="desativar()" style="background:transparent;color:white;border:1px solid white">DESATIVAR</button></div>
+      <div id="status" style="font-size:11px; margin-top:6px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="filtro">Você está em: <span id="filtroNome">Ansiedade</span> <span id="contador">Dia 1 de 30</span></div>
+  <div class="menu" id="menu"></div>
+  <div class="card" id="card"></div>
+  <div class="nav">
+    <button onclick="mudar(-1)">← ANTERIOR</button>
+    <button onclick="mudar(1)">PRÓXIMO →</button>
+  </div>
+</div>
+
+<script>
+let musicaTocando=false;
+const audio=document.getElementById('musica');
+function toggleMusica(){
+  if(musicaTocando){audio.pause(); musicaTocando=false; document.getElementById('btnMusica').innerText='🔊 Música: OFF';}
+  else{audio.play().then(()=>{musicaTocando=true; document.getElementById('btnMusica').innerText='🔈 Música: ON';}).catch(()=>{alert('Clique novamente em qualquer lugar para ativar a música');});}
+}
+// autoplay no primeiro clique - resolve bloqueio do navegador
+window.addEventListener('click', function primeiraVez(){
+  if(!musicaTocando){audio.play().then(()=>{musicaTocando=true; document.getElementById('btnMusica').innerText='🔈 Música: ON';}).catch(()=>{});}
+}, {once:true});
+
+const temas={
+"😰 Ansiedade":{ref:"Filipenses 4:6-7", lista:[
+{ t:"Dia 1 - Ansiedade não me domina", ver:"Não andem ansiosos por coisa alguma, mas em tudo, pela oração, apresentem seus pedidos a Deus. - Fp 4:6", refl:"Charmila, Deus não quer que você carregue peso sozinha. Hoje entregue.", dec:"Eu, Charmila Elija, lanço toda ansiedade sobre Deus porque Ele cuida de mim.", ora:"Pai, hoje entrego minha ansiedade em Tuas mãos. Toma conta."},
+{ t:"Dia 2 - Paz que excede entendimento", ver:"E a paz de Deus, que excede todo entendimento, guardará o vosso coração. - Fp 4:7", refl:"A paz de Deus não depende da situação melhorar, ela guarda você mesmo no caos.", dec:"A paz de Deus guarda meu coração e mente hoje.", ora:"Senhor, guarda minha mente com Tua paz que eu não entendo."},
+{ t:"Dia 3 - Deus me segura", ver:"Mesmo quando eu andar pelo vale da sombra, não temerei. - Salmos 23:4", refl:"Você não está sozinha no vale. Ele está te segurando pela mão.", dec:"Mesmo ansiosa, estou segura porque Deus está comigo.", ora:"Me segura forte hoje, Jesus, quando a ansiedade vier."}
+]},
+"😨 Medo e Insegurança":{ref:"Isaías 41:10", lista:[
+{ t:"Dia 1 - Não temerei", ver:"Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus. - Is 41:10", refl:"O medo diz que você está só. Deus diz: Eu sou contigo.", dec:"Não temerei, Deus está comigo e me fortalece.", ora:"Tira todo medo do meu coração hoje, Pai."},
+{ t:"Dia 2 - Sou corajosa", ver:"Seja forte e corajosa, o Senhor vai com você. - Js 1:9", refl:"Coragem não é não sentir medo, é avançar mesmo com medo.", dec:"Sou forte e corajosa, o Senhor vai comigo.", ora:"Me faz corajosa para fazer o que preciso hoje."},
+{ t:"Dia 3 - Estou protegida", ver:"Mil cairão ao teu lado, mas você não será atingida. - Sl 91:7", refl:"Proteção não é ausência de luta, é presença de Deus na luta.", dec:"Estou protegida e guardada por Deus.", ora:"Guarda-me de todo mal hoje."}
+]},
+"💼 Desemprego e Finanças":{ref:"Filipenses 4:19", lista:[
+{ t:"Dia 1 - Deus suprirá", ver:"O meu Deus suprirá todas as vossas necessidades segundo suas riquezas. - Fp 4:19", refl:"Seu provedor não é o emprego, é Deus. Emprego é canal.", dec:"Deus suprirá todas minhas necessidades hoje.", ora:"Tu és meu provedor, confio em Ti."},
+{ t:"Dia 2 - Porta aberta", ver:"Eis que diante de ti pus uma porta aberta que ninguém pode fechar. - Ap 3:8", refl:"Uma porta que Deus abre, homem nenhum fecha.", dec:"Deus abre porta para Charmila que ninguém fecha.", ora:"Abre a porta que é minha, Senhor."},
+{ t:"Dia 3 - Mãos abençoadas", ver:"O Senhor abençoará o trabalho das tuas mãos. - Dt 28:12", refl:"Seu trabalho, mesmo pequeno, nas mãos de Deus se torna grande.", dec:"Tudo que faço prospera porque Deus está comigo.", ora:"Abençoa o trabalho das minhas mãos hoje."}
+]},
+"🏠 Problemas no Lar":{ref:"Josué 24:15", lista:[
+{ t:"Dia 1 - Meu lar tem paz", ver:"Eu e a minha casa serviremos ao Senhor. - Js 24:15", refl:"Sua casa não é campo de guerra, é lugar de presença de Deus.", dec:"Eu e minha casa serviremos ao Senhor em paz.", ora:"Traz paz ao meu lar hoje, Jesus."},
+{ t:"Dia 2 - Pacificadora", ver:"Bem-aventurados os pacificadores, porque serão chamados filhos de Deus. - Mt 5:9", refl:"Você pode ser a resposta de paz que seu lar precisa.", dec:"Sou pacificadora no meu lar.", ora:"Me usa para trazer paz onde houver confusão."},
+{ t:"Dia 3 - Amor cobre", ver:"O amor cobrirá uma multidão de pecados. - 1 Pe 4:8", refl:"Amor não ignora erro, mas escolhe não viver acusando.", dec:"O amor de Deus em mim cobre toda mágoa.", ora:"Enche minha casa de amor hoje."}
+]},
+"💔 Coração Ferido":{ref:"Salmos 147:3", lista:[
+{ t:"Dia 1 - Coração curado", ver:"Sara os quebrantados de coração e cura-lhes as feridas. - Sl 147:3", refl:"Ferida na alma Deus também cura. Ele é especialista em recomeços.", dec:"Deus sara meu coração quebrantado hoje.", ora:"Cura meu coração, Pai, onde ainda dói."},
+{ t:"Dia 2 - Profundamente amada", ver:"Com amor eterno te amei. - Jr 31:3", refl:"Rejeição humana não cancela amor eterno de Deus.", dec:"Sou profundamente amada por Deus com amor eterno.", ora:"Me faz sentir Teu amor hoje onde me senti rejeitada."},
+{ t:"Dia 3 - Tudo novo", ver:"As coisas velhas já passaram, tudo se fez novo. - 2Co 5:17", refl:"Hoje pode ser seu dia 1 de novo. Deus dá novos começos.", dec:"Sou nova criatura, o passado não me define.", ora:"Me dá um novo começo hoje, Jesus."}
+]},
+"🙏 Propósito e Fé":{ref:"Jeremias 29:11", lista:[
+{ t:"Dia 1 - Futuro de paz", ver:"Eu sei os planos que tenho para vocês, planos de paz e não de mal. - Jr 29:11", refl:"Seu futuro não está nas mãos do medo, está nas mãos de Deus.", dec:"Os planos de Deus para mim são de paz e esperança.", ora:"Mostra-me Teus planos hoje, Senhor."},
+{ t:"Dia 2 - Escolhida", ver:"Não me escolhestes vós a mim, mas eu vos escolhi a vós. - Jo 15:16", refl:"Você não foi plano B. Foi escolhida a dedo.", dec:"Fui escolhida por Deus antes da fundação do mundo.", ora:"Obrigada por me escolher, mesmo eu me sentindo pequena."},
+{ t:"Dia 3 - Tudo coopera", ver:"Todas as coisas cooperam para o bem daqueles que amam a Deus. - Rm 8:28", refl:"Até o que doeu vai cooperar para seu bem. Deus não desperdiça dor.", dec:"Tudo coopera para meu bem porque amo a Deus.", ora:"Mesmo sem entender, confio que vai cooperar para meu bem."}
+]}
+};
+
+let temaAtual="😰 Ansiedade";
+let diaAtual=0;
+const catGrid=document.getElementById('catGrid');
+Object.keys(temas).forEach(k=>{
+  const b=document.createElement('button'); b.innerText=k;
+  b.onclick=()=>trocarTema(k);
+  if(k===temaAtual) b.classList.add('active');
+  catGrid.appendChild(b);
+});
+function trocarTema(k){temaAtual=k; diaAtual=0; document.querySelectorAll('.cat-grid button').forEach(b=>b.classList.toggle('active', b.innerText===k)); montarMenu(); mostrar();}
+function montarMenu(){const menu=document.getElementById('menu'); menu.innerHTML=''; for(let i=0;i<30;i++){const b=document.createElement('button'); b.innerText=i+1; b.onclick=()=>{diaAtual=i; mostrar();}; menu.appendChild(b);}}
+function mostrar(){
+  const dados=temas[temaAtual];
+  const base=dados.lista[diaAtual % dados.lista.length];
+  const diaReal=diaAtual+1;
+  document.getElementById('filtroNome').innerText=temaAtual;
+  document.getElementById('contador').innerText=`Dia ${diaReal} de 30`;
+  document.getElementById('card').innerHTML=`
+    <h2>${base.t}</h2>
+    <div class="versiculo-small">📖 ${base.ver}</div>
+    <div class="bloco roxo"><div class="label">💭 REFLEXÃO</div>${base.refl}</div>
+    <div class="bloco"><div class="label">🗣️ DECLARAÇÃO</div>${base.dec}</div>
+    <div class="bloco rosa"><div class="label">🙏 ORAÇÃO</div>${base.ora} Amém.</div>
+    <div style="font-size:10px; opacity:0.5; margin-top:10px">Charmila Elija • ${temaAtual} • ${dados.ref} • Dia ${diaReal}/30</div>
+  `;
+  document.querySelectorAll('.menu button').forEach((b,i)=>b.classList.toggle('active', i===diaAtual));
+  localStorage.setItem('temaCharmila', temaAtual); localStorage.setItem('diaCharmila', diaAtual);
+}
+function mudar(d){diaAtual+=d; if(diaAtual<0)diaAtual=29; if(diaAtual>29)diaAtual=0; mostrar();}
+
+// LEMBRETE COMPLETO
+let timer=null;
+function ativar(){
+  const h=document.getElementById('hora').value;
+  if(!h) return alert('Escolhe hora!');
+  if(Notification&&Notification.permission!=='granted') Notification.requestPermission();
+  localStorage.setItem('horaCharmila',h);
+  document.getElementById('status').innerText='✅ Ativo às '+h+' com reflexão + oração';
+  if(timer) clearInterval(timer);
+  timer=setInterval(checar,60000);
+  alert('Lembrete ativado às '+h+' com versículo completo!');
+}
+function desativar(){localStorage.removeItem('horaCharmila'); if(timer) clearInterval(timer); document.getElementById('status').innerText='❌ Desativado';}
+function checar(){
+  const hs=localStorage.getItem('horaCharmila'); if(!hs) return;
+  const ag=new Date(); const ha=ag.getHours().toString().padStart(2,'0')+':'+ag.getMinutes().toString().padStart(2,'0');
+  if(ha===hs){
+    const dados=temas[temaAtual]; const base=dados.lista[diaAtual % dados.lista.length];
+    const texto=`📖 ${base.ver}\n💭 ${base.refl}\n🗣️ ${base.dec}\n🙏 ${base.ora}`;
+    if(Notification&&Notification.permission==='granted'){
+      new Notification('Charmila - '+temaAtual+' Dia '+(diaAtual+1), {body: texto.substring(0,120)+'...', icon:'IMG_9525.jpeg'});
+    } else {
+      alert('💜 DEVOCIONAL '+temaAtual+' - Dia '+(diaAtual+1)+'\n\n'+texto);
+    }
+  }
+}
+
+montarMenu();
+const tSalvo=localStorage.getItem('temaCharmila'); if(tSalvo&&temas[tSalvo]){temaAtual=tSalvo; document.querySelectorAll('.cat-grid button').forEach(b=>b.classList.toggle('active', b.innerText===tSalvo));}
+const dSalvo=localStorage.getItem('diaCharmila'); if(dSalvo) diaAtual=parseInt(dSalvo);
+mostrar();
+const hs=localStorage.getItem('horaCharmila'); if(hs){document.getElementById('hora').value=hs; document.getElementById('status').innerText='✅ Ativo às '+hs; timer=setInterval(checar,60000);}
+</script>
+</body>
+</html>
